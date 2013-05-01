@@ -1,8 +1,9 @@
 <!doctype html>
-<html>
+<html ng-app="countApp">
   <head>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
   </head>
-  <body>
+  <body ng-controller="FileController" ng-cloak>
 
     <p>Export your <a href="http://ankisrs.net/">Anki</a> deck as plain text, and then open the file here
     for a summary of your kanji progress. Duplicates will be
@@ -14,49 +15,24 @@
     guarantee it won't work on anything less than IE 10 because that
     is the first version to support the file api.</p>
 
-    <input type="file" id="files" />
+    <fileinput ng-model="files"> </fileinput>
 
-    <h1>Kanji Learned</h1>
-    <span id="count"></span>
-    <div id="kanji"></div>
+    <div ng-show="kanjiMatches.length > 0">
+      <section class="summary">
+        <h2>All Kanji Learned ({{aggregateMatches.matches.length}}/{{aggregateMatches.kanjis.length}})</h2>
+        <p>{{aggregateMatches.matches}}</p>
+      </section>
 
-    <h1> Jouyou Kanji Unlearned</h1>
-    Total: <span id="total-unlearned"></span>
+      <section ng-repeat="match in kanjiMatches">
+        <h2>{{match.displayName}} ({{match.matches.length}}/{{match.kanjis.length}})</h2>
+        <p>To learn:</p>
+        <p>{{match.misses}}</p>
+      </section>
+    </div>
 
-    <h1>Grade 1 Unlearned</h1>
-    Remaining: <span id="grade1-count"></span> From: <span id="grade1-total"></span>
-    <div id="grade1-kanji"></div>
-
-    <h1>Grade 2 Unlearned</h1>
-    Remaining: <span id="grade2-count"></span> From: <span id="grade2-total"></span>
-    <div id="grade2-kanji"></div>
-
-    <h1>Grade 3 Unlearned</h1>
-    Remaining: <span id="grade3-count"></span> From: <span id="grade3-total"></span>
-    <div id="grade3-kanji"></div>
-
-    <h1>Grade 4 Unlearned</h1>
-    Remaining: <span id="grade4-count"></span> From: <span id="grade4-total"></span>
-    <div id="grade4-kanji"></div>
-
-    <h1>Grade 5 Unlearned</h1>
-    Remaining: <span id="grade5-count"></span> From: <span id="grade5-total"></span>
-    <div id="grade5-kanji"></div>
-
-    <h1>Grade 6 Unlearned</h1>
-    Remaining: <span id="grade6-count"></span> From: <span id="grade6-total"></span>
-    <div id="grade6-kanji"></div>
-
-    <h1>Secondary School Unlearned</h1>
-    Remaining: <span id="grade7to12-count"></span> From: <span id="grade7to12-total"></span>
-    <div id="grade7to12-kanji"></div>
-
-    <h1>2008 Additions Unlearned</h1>
-    Remaining: <span id="additions-count"></span> From: <span id="additions-total"></span>
-    <div id="additions-kanji"></div>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.0.1/lodash.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.2.1/lodash.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js"></script>
     <script src="count.js" charset="UTF-8"></script>
   </body>
 </html>
