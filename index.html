@@ -20,13 +20,13 @@
     <div ng-show="kanjiMatches.length > 0">
       <section class="summary">
         <h2>All Kanji Learned ({{aggregateMatches.matches.length}}/{{aggregateMatches.kanjis.length}})</h2>
-        <p>{{aggregateMatches.matches}}</p>
+        <p lang="ja">{{aggregateMatches.matches}}</p>
       </section>
 
       <section ng-repeat="match in kanjiMatches">
         <h2>{{match.displayName}} ({{match.matches.length}}/{{match.kanjis.length}})</h2>
         <p>To learn:</p>
-        <p>{{match.misses}}</p>
+        <p lang="ja">{{match.misses}}</p>
       </section>
     </div>
 
