@@ -1,3 +1,5 @@
+Main site: http://brillig.net/kanji_tracker/
+
 The MIT License (MIT)
 
 Copyright (c) 2013 Brendan Miller
