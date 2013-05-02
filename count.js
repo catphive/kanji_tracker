@@ -124,7 +124,6 @@
                     return;
                 }
 
-                console.log('linking');
                 el.change(function (event) {
                     scope.$apply(function () {
                         modelCtrl.$setViewValue(_.toArray(el[0].files));

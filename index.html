@@ -1,38 +1,57 @@
 <!doctype html>
 <html ng-app="countApp">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="style.css"/>
   </head>
   <body ng-controller="FileController" ng-cloak>
+    <header>
+      <div class="container">
+        <h1 class="text-center">Kanji Tracker</h1>
+        <a class="fork-me" href="https://github.com/catphive/kanji_tracker">
+          <img src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" />
+        </a>
+      </div>
+    </header>
+    <div class="container">
+      <div class="how-to">
+        <p>This tool uses your kanji flashcard deck to give you a
+        summary of what kanji you know, and what kanji you need to
+        learn. The breakdown is relative to the
+        official <span lang="ja">常用漢字</span> (jouyou kanji)
+        maintained by the Japanese Ministry of Education.</p>
 
-    <p>Export your <a href="http://ankisrs.net/">Anki</a> deck as plain text, and then open the file here
-    for a summary of your kanji progress. Duplicates will be
-    automatically removed.</p>
+        <p>Export your <a href="http://ankisrs.net/">Anki</a> deck as
+        plain text, and then open the file here for a summary of your
+        kanji progress. Duplicates will be automatically removed. Any
+        text file which contains all of the kanji that you know will
+        work.</p>
 
-    <p>Any text file which contains all of the kanji that you know will work.</p>
+        <p>This will not work on any version of IE other than
+        10. Chrome or Firefox is recommended.</p>
+      </div>
 
-    <p>I have made no attempt whatever to test this on IE, but I can
-    guarantee it won't work on anything less than IE 10 because that
-    is the first version to support the file api.</p>
+      <fileinput ng-model="files" title="Open Deck"> </fileinput>
 
-    <fileinput ng-model="files"> </fileinput>
+      <div ng-show="kanjiMatches.length > 0">
+        <section class="summary">
+          <h2>All Kanji Learned ({{aggregateMatches.matches.length}}/{{aggregateMatches.kanjis.length}})</h2>
+          <p lang="ja" class="well kanji learned">{{aggregateMatches.matches}}</p>
+        </section>
 
-    <div ng-show="kanjiMatches.length > 0">
-      <section class="summary">
-        <h2>All Kanji Learned ({{aggregateMatches.matches.length}}/{{aggregateMatches.kanjis.length}})</h2>
-        <p lang="ja">{{aggregateMatches.matches}}</p>
-      </section>
+        <section ng-repeat="match in kanjiMatches">
+          <h2>{{match.displayName}} ({{match.matches.length}}/{{match.kanjis.length}})</h2>
+          <p lang="ja" class="well kanji to-learn">{{match.misses}}</p>
+        </section>
+      </div>
 
-      <section ng-repeat="match in kanjiMatches">
-        <h2>{{match.displayName}} ({{match.matches.length}}/{{match.kanjis.length}})</h2>
-        <p>To learn:</p>
-        <p lang="ja">{{match.misses}}</p>
-      </section>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.2.1/lodash.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+      <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js"></script>
+      <script src="count.js" charset="UTF-8"></script>
     </div>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.2.1/lodash.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.js"></script>
-    <script src="count.js" charset="UTF-8"></script>
   </body>
 </html>

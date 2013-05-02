@@ -5,3 +5,73 @@
 :lang(ja) {
     font-family:"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
+
+body {
+    background-color: #D4D4D4;
+}
+
+.container {
+    background-color: white;
+    padding: 3em;
+}
+
+header > .container {
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    background-image:url('twirl.gif');
+    color: white;
+    position: relative;
+}
+
+body > .container {
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px; 
+}
+
+.well {
+    background-color: #E1F2B3;
+    border: 1px solid #b2e820;
+}
+
+.how-to {
+    padding: 19px;
+    border: 3px solid #b2e820;
+    border-radius: 4px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.how-to p:first-child {
+    text-indent: 1em;
+}
+
+.fork-me {
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.kanji {
+    position: relative;
+    padding-top: 2.5em;
+}
+
+.to-learn:after {
+    content: "Learn These";
+}
+
+.learned:after {
+    content: "You Know These";
+}
+
+.kanji:after {
+    position: absolute;
+    padding: 0.25em 1em;
+    left: -1px;
+    top: -1px;
+    border: 1px solid #b2e820;
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 4px;
+    background-color: #b2e820;
+}
