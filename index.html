@@ -16,6 +16,7 @@
       </div>
     </header>
     <div class="container">
+
       <div class="how-to">
         <p>This tool uses your kanji flashcard deck to give you a
         summary of what kanji you know, and what kanji you need to
@@ -38,12 +39,51 @@
       <div ng-show="kanjiMatches.length > 0">
         <section class="summary">
           <h2>All Kanji Learned ({{aggregateMatches.matches.length}}/{{aggregateMatches.kanjis.length}})</h2>
-          <p lang="ja" class="well kanji learned">{{aggregateMatches.matches}}</p>
+          <div lang="ja" class="well kanji learned">
+            <div class="dropdown kanji-dropdown" ng-repeat="kanji in aggregateMatches.matches">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{kanji}}</a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li>
+                  <a tabindex="-1"
+                     href="http://jisho.org/words?jap=*{{kanji}}*&eng=&dict=edict&common=on">
+                    Words Containing {{kanji}}
+                  </a>
+                </li>
+                <li>
+                  <a tabindex="-1"
+                     href="http://jisho.org/sentences?jap={{kanji}}&eng=">
+                    Sentences Containing {{kanji}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            &nbsp;
+          </div>
         </section>
 
         <section ng-repeat="match in kanjiMatches">
           <h2>{{match.displayName}} ({{match.matches.length}}/{{match.kanjis.length}})</h2>
-          <p lang="ja" class="well kanji to-learn">{{match.misses}}</p>
+          <div lang="ja" class="well kanji to-learn">
+            <div class="dropdown kanji-dropdown" ng-repeat="kanji in match.misses">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{kanji}}</a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li>
+                  <a tabindex="-1"
+                     href="http://jisho.org/words?jap=*{{kanji}}*&eng=&dict=edict&common=on">
+                    Words Containing {{kanji}}
+                  </a>
+                </li>
+                <li>
+                  <a tabindex="-1"
+                     href="http://jisho.org/sentences?jap={{kanji}}&eng=">
+                    Sentences Containing {{kanji}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            &nbsp;
+          </div>
+
         </section>
       </div>
 

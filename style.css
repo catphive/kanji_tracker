@@ -75,3 +75,12 @@ body > .container {
     border-top-left-radius: 4px;
     background-color: #b2e820;
 }
+
+.kanji-dropdown {
+    display: inline-block;
+    color: black;
+}
+
+.kanji-dropdown > a {
+    color: #333333;
+}
